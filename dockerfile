@@ -1,10 +1,11 @@
-FROM python:3.9-slim-buster
+FROM python:3
 
-WORKDIR /app
+ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt requirements.txt
+RUN mkdir /code
 
-RUN pip3 install -r requirements.txt 
+WORKDIR /code
 
-COPY . . 
-CMD ["python3", "manage.py", "runserver"]
+COPY . /code/
+
+RUN pip install -r requirements.txt
